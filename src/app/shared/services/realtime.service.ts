@@ -12,7 +12,7 @@ export class RealTimeService {
 
     public async startConnection() {
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('https://localhost:5001/jobs')
+            .withUrl('http://localhost:53642/jobs')
             .build();
        await this.hubConnection.start();
     }

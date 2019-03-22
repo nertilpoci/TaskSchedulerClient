@@ -1,0 +1,30 @@
+<!-- <div class="example-button-row">
+  <button mat-button>Basic</button>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  <a mat-button routerLink=".">Link</a>
+</div> -->
+
+<mat-accordion>
+  <mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>autorenew</mat-icon> &nbsp;&nbsp; Tasks  
+      </mat-panel-title>
+      <mat-panel-description>
+        3 Jobs running
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list dense>
+      <mat-list-item *ngFor="let job of jobs"> 
+          
+   <mat-spinner color="accent"  [diameter]="20"></mat-spinner> &nbsp; {{job.name}} 
+  
+      </mat-list-item>
+     </mat-list>
+     
+     
+  </mat-expansion-panel>
+</mat-accordion>

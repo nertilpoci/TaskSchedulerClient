@@ -1,29 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatListModule} from '@angular/material/list';
-
 import { NgModule, Injector } from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { createCustomElement } from '@angular/elements';
 
-import { JoblistComponent } from './joblist/joblist.component';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    JoblistComponent
+    AppComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
-    MatListModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatListModule,
+    MatExpansionModule,
+    HttpClientModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
-  bootstrap: [],
   providers: [],
-  entryComponents: [JoblistComponent]
+  bootstrap: [],
+  entryComponents: [AppComponent]
 })
 export class AppModule {
   constructor(private injector: Injector) {
-    const joblist = createCustomElement(JoblistComponent, { injector});
-    customElements.define('scheduled-job-list', joblist);
+     const app = createCustomElement(AppComponent, { injector});
+     customElements.define('task-list', app);
   }
-  ngDoBootstrap() {}
+   ngDoBootstrap() {}
 }

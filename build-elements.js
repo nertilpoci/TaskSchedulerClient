@@ -5,10 +5,10 @@ const concat = require('concat');
 (async function build() {
 
     const files =[
-        './dist/scheduled-jobs/main.js',
-        './dist/scheduled-jobs/runtime.js',
-        './dist/scheduled-jobs/polyfills.js',
-        './dist/scheduled-jobs/scripts.js'
+        './dist/taskscheduler/main.js',
+        './dist/taskscheduler/runtime.js',
+        './dist/taskscheduler/polyfills.js',
+        './dist/taskscheduler/scripts.js'
     ]
     
     await fs.ensureDir('elements')
