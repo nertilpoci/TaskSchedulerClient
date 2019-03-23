@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { createCustomElement } from '@angular/elements';
+import { MomentModule } from 'ngx-moment';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +24,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatExpansionModule,
     HttpClientModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MomentModule.forRoot({
+      relativeTimeThresholdOptions: {
+        'm': 59
+      }
+    })
   ],
   providers: [],
   bootstrap: [],

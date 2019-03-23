@@ -7,24 +7,33 @@
   <a mat-button routerLink=".">Link</a>
 </div> -->
 
-<mat-accordion>
-  <mat-expansion-panel >
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>autorenew</mat-icon> &nbsp;&nbsp; Tasks  
-      </mat-panel-title>
-      <mat-panel-description>
-        3 Jobs running
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-list dense>
-      <mat-list-item *ngFor="let job of jobs"> 
-          
-   <mat-spinner color="accent"  [diameter]="20"></mat-spinner> &nbsp; {{job.name}} 
-  
-      </mat-list-item>
-     </mat-list>
-     
-     
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="box-position mat-elevation-z8">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>autorenew</mat-icon> &nbsp;&nbsp; Tasks
+        </mat-panel-title>
+        <mat-panel-description>
+          {{jobs.length}} Job{{jobs.length ==1? '' : 's'}} running
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list >
+          <mat-expansion-panel mat-list-item *ngFor="let job of jobs">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-spinner [value]="job.percentComplete" *ngIf="job.status==JobStatus.Running" color="accent" [diameter]="20"></mat-spinner>
+                <mat-icon *ngIf="job.status==JobStatus.Finished">done</mat-icon>
+                <mat-icon *ngIf="job.status==JobStatus.Created">queue</mat-icon>
+                &nbsp; {{job.name}} &nbsp;&nbsp;&nbsp; {{ job.duration | amDuration:'seconds'  }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            {{job.description}}
+            <mat-list dense>
+                <mat-list-item *ngFor="let output of job.jobOutputs"> {{output.time | amLocal | amCalendar}} &nbsp;&nbsp; {{output.content}} </mat-list-item>
+               </mat-list>
+          </mat-expansion-panel>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
