@@ -13,7 +13,7 @@ import { JobUpdateNotification, JobNotificationType } from './shared/models/jobu
 })
 export class AppComponent implements OnInit {
   public JobStatus: any = JobStatus;
-  jobs: Job[] = [new Job(), new Job(), new Job()];
+  jobs: Job[] = [];
 
   constructor(public realTimeService: RealTimeService, public dataService: DataService) {
 
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
             this.jobs.push(notification.data);
             break;
           case JobNotificationType.PercentUpdate:
-            if (job != null) { job.ppercentCompleted = notification.data; }
+            if (job != null) { job.percentCompleted = notification.data; }
             break;
           case JobNotificationType.StatusUpdate:
             if (job != null) { job.status = notification.data; }
@@ -60,6 +60,8 @@ export class AppComponent implements OnInit {
       this.jobs = data;
     });
   }
-
+   public remove(id): void {
+    this.jobs.splice(this.jobs.findIndex(z => z.id === id), 1);
+   }
 
 }

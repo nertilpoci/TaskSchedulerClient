@@ -15,23 +15,28 @@
           <mat-icon>autorenew</mat-icon> &nbsp;&nbsp; Tasks
         </mat-panel-title>
         <mat-panel-description>
-          {{jobs.length}} Job{{jobs.length ==1? '' : 's'}} running
+          {{jobs.length}} Job{{jobs.length ==1? '' : 's'}}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-list >
           <mat-expansion-panel mat-list-item *ngFor="let job of jobs">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <mat-spinner [value]="job.percentComplete" *ngIf="job.status==JobStatus.Running" color="accent" [diameter]="20"></mat-spinner>
+                <mat-spinner mode="indeterminate"  [value]="job.percentCompleted" *ngIf="job.status==JobStatus.Running" color="accent" [diameter]="20"></mat-spinner>
                 <mat-icon *ngIf="job.status==JobStatus.Finished">done</mat-icon>
                 <mat-icon *ngIf="job.status==JobStatus.Created">queue</mat-icon>
-                &nbsp; {{job.name}} &nbsp;&nbsp;&nbsp; {{ job.duration | amDuration:'seconds'  }}
+                &nbsp; {{job.name}}&nbsp;({{job.percentCompleted}}%) &nbsp;&nbsp;&nbsp; {{ job.duration | amDuration:'seconds'  }} 
               </mat-panel-title>
+             
             </mat-expansion-panel-header>
+            
             {{job.description}}
             <mat-list dense>
                 <mat-list-item *ngFor="let output of job.jobOutputs"> {{output.time | amLocal | amCalendar}} &nbsp;&nbsp; {{output.content}} </mat-list-item>
                </mat-list>
+               <mat-action-row *ngIf="job.status==JobStatus.Finished">
+                <button mat-button color="primary" (click)="remove(job.id)" > <mat-icon >close</mat-icon></button>
+              </mat-action-row>
           </mat-expansion-panel>
       </mat-list>
     </mat-expansion-panel>

@@ -4,7 +4,7 @@ export class Job {
     description: string;
     ownerId: string;
     status: JobStatus;
-    ppercentCompleted: number;
+    percentCompleted: number;
     jobType: string;
     startTime: Date;
     endTime: Date;

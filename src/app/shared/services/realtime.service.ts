@@ -12,7 +12,7 @@ export class RealTimeService {
 
     public async startConnection() {
         this.hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('http://localhost:53642/jobs')
+            .withUrl('http://apitaskscheduler.nertilpoci.com/jobs')
             .build();
        await this.hubConnection.start();
     }
