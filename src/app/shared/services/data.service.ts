@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://apitaskscheduler.nertilpoci.com/api/';
+  private apiUrl = 'https://apitaskscheduler.nertilpoci.com/api/';
   constructor(private httpClient: HttpClient) {
     this.apiUrl = this.apiUrl;
   }
